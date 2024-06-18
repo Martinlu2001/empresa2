@@ -3,14 +3,21 @@
 @section('title', 'Persona')
 
 @section('content')
+<tr>
+    <td>
+        <a href="{{route('personas.create')}}">Nueva persona</a>
+    </td>
+</tr>
 
+<tr>
+    <th>Listado de personas</th>
+</tr>
 <table class="tablaservicios" style="justify-content:center; display:flex">
     
         <tr>
             @if($personas)
                 @foreach($personas as $persona)
-
-                <td>{{$persona->nPerCodigo}} <br> {{$persona->cPerApellido}} <br> {{$persona->cPerNombre}} <br> {{$persona->cPerDireccion}} <br> {{$persona->dPerFecNac}} <br> {{$persona->nPerEdad}} <br> {{$persona->cPerSexo}} <br> {{$persona->nPerSueldo}} <br> {{$persona->cPerRnd}}</td>
+                    <td><a href="{{route('personas.show', $persona)}}">{{$persona->cPerApellido}}</a></td>
                     
                 @endforeach
             @else
@@ -21,6 +28,7 @@
         <tr>
             <td colspan="10" class="linke">{{$personas->links()}}</td>
         </tr>
+
 </table>
 
 @endsection

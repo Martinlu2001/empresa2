@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Persona;
+use App\Http\Requests\CreatePersonaRequest;
 //use DB;
+
 class Personas2Controller extends Controller
 {
     /**
@@ -13,7 +15,7 @@ class Personas2Controller extends Controller
     public function index()
     {
         //
-        //$personas = DB::table('persona')->get();
+        //$personas = DB::table('personas')->get();
         //$personas = Persona::get();
         $personas = Persona::latest()->paginate(2);
     
@@ -25,23 +27,25 @@ class Personas2Controller extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreatePersonaREquest $request)
     {
-        //
+        //Persona::create(request()->all());
+        Persona::create($request->validated());
+        return redirect()->route('personas.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($nPerCodigo)
+    public function show($id)
     {
-        //
+        return Persona::find($id);
         /*return view('show',[
             'persona' => Persona::find($nPerCodigo)
         ]);*/
