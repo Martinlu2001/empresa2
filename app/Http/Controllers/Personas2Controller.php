@@ -27,7 +27,9 @@ class Personas2Controller extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('create',[
+            'persona' => new Persona
+        ]);
     }
 
     /**
@@ -45,33 +47,44 @@ class Personas2Controller extends Controller
      */
     public function show($id)
     {
-        return Persona::find($id);
+        //return Persona::find($id);
         /*return view('show',[
             'persona' => Persona::find($nPerCodigo)
         ]);*/
+        return view('show',[
+            'persona' => Persona::find($id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Persona $id)
     {
         //
+        return view('edit',[
+            'persona' => $id
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Persona $id, CreatePersonaRequest $request)
     {
         //
+        $id->update($request->validated());
+
+        return redirect()->route('personas.show', $id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Persona $persona)
     {
         //
+        $persona->delete();
+        return redirect()->route('personas.index');
     }
 }

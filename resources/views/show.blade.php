@@ -6,6 +6,14 @@
 
 <tr>
     <td colspan="5">{{$persona->nPerCodigo}} </td>
+    <a href="{{route('personas.edit', $persona)}}">Editar</a>
+    <td colspan="2">
+        <form action="{{route('personas.destroy', $persona)}}" method="post">
+            @csrf @method('DELETE')
+            <button>Eliminar</button>
+        </form>
+
+    </td>
 </tr>
 <br>
 
@@ -31,9 +39,7 @@
 <tr>
     <td colspan="5">{{$persona->nPerSueldo}}</td>
 </tr>
-<tr>
-    <td colspan="5">{{$persona->cPerRnd}}</td>
-</tr>
+
 <tr>
     <td colspan="5">{{$persona->nPerEstado}}</td>
 </tr>
