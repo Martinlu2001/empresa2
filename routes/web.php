@@ -15,3 +15,4 @@ Route::post('personas', 'App\Http\Controllers\Personas2Controller@store')->name(
 Route::get('personas/{id}', 'App\Http\Controllers\Personas2Controller@show')->name('personas.show');
 Route::delete('personas/{persona}', 'App\Http\Controllers\Personas2Controller@destroy')->name('personas.destroy');
 Route::view('contacto','contacto')->name('contacto');
+Route::post('contacto', 'App\Http\Controllers\ContactoController@store');
