@@ -2,7 +2,7 @@
 
         <tr>
             <th>Apellidos</th>
-            <td> <input type="text" name="cPerApellido" value="{{old('cPerApellido',$persona->cPerApellido)}}"></td>
+            <td> <input type="text" name="cPerApellido" value="{{old('cPerApellido',$persona->cPerApellido)}}"></td>           
         </tr>
 
         <tr>
@@ -30,10 +30,6 @@
             <td><input type="text" name="nPerSueldo" value="{{old('nPerSueldo',$persona->nPerSueldo)}}"></td>
         </tr>
 
-    
-
-
-
         <tr>
             <th>Estado</th>
 
@@ -49,5 +45,5 @@
         </tr>
 
         <tr>
-            <td colspan="2" align="center"><button>{{$btnText}}</button></td>
+            <td colspan="2" align="center"><button class="btn btn-primary">{{$btnText}}</button></td>
         </tr>

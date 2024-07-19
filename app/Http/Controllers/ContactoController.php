@@ -24,6 +24,8 @@ class ContactoController extends Controller
 
         Mail::to('empresa@gmail.com')->send(new MensajeRecibido($mensaje));
         //return new MensajeRecibido($mensaje);
-        return 'Mensaje enviado';
+        //return 'Mensaje enviado';
+        return back()->with('estado', 'Gracias por ponerte en contacto, te responderemos a la brevedad posible');
+
     }
 }

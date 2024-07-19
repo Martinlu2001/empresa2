@@ -3,18 +3,13 @@
 @section('title', 'Contacto')
 
 @section('content')
-    <tr>
-        <td colspan="4">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" colspan="2"> CONTACTO</th>
-                    </tr>
-                </thead>
-            
+            <table cellpadding="3" cellspacing="5" class="table table-bordered" style="display:flex;">             
                 <form action="{{route('contacto')}}" method="post">
                     @csrf
                     <tbody>
+                        <tr>
+                            <th colspan="4">CONTACTO</th>
+                        </tr>
                         <tr>
                             <td scope="row">Nombre</td>
                             <td>
@@ -52,6 +47,4 @@
                     </tbody>
                 </form>
             </table>
-        </td>
-    </tr>
 @endsection

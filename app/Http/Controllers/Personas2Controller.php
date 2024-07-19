@@ -12,6 +12,10 @@ class Personas2Controller extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function _construc(){
+        $this->middleware('auth')->except('index', 'show');
+    }
+    
     public function index()
     {
         //
@@ -39,7 +43,8 @@ class Personas2Controller extends Controller
     {
         //Persona::create(request()->all());
         Persona::create($request->validated());
-        return redirect()->route('personas.index');
+        //return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('estado', 'La persona fue creado correctamente');;
     }
 
     /**
@@ -59,23 +64,24 @@ class Personas2Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Persona $id)
+    public function edit(Persona $persona)
     {
         //
         return view('edit',[
-            'persona' => $id
+            'persona' => $persona
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Persona $id, CreatePersonaRequest $request)
+    public function update(Persona $persona, CreatePersonaRequest $request)
     {
         //
-        $id->update($request->validated());
+        $persona->update($request->validated());
 
-        return redirect()->route('personas.show', $id);
+        //return redirect()->route('personas.show', $id);
+        return redirect()->route('personas.show', $persona)->with('estado', 'La persona fue actualizada correctamente');;
     }
 
     /**
@@ -85,6 +91,7 @@ class Personas2Controller extends Controller
     {
         //
         $persona->delete();
-        return redirect()->route('personas.index');
+        //return redirect()->route('personas.index');
+        return redirect()->route('personas.index')->with('estado', 'La persona fue eliminada correctamente');
     }
 }

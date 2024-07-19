@@ -3,16 +3,21 @@
 @section('title', 'Persona')
 
 @section('content')
-<tr>
-    <td>
-        <a href="{{route('personas.create')}}">Nueva persona</a>
-    </td>
-</tr>
 
-<tr>
-    <th>Listado de personas</th>
-</tr>
-<table class="tablaservicios" style="justify-content:center; display:flex">
+<table class="table table-bordered" style="display:flex;">
+    <tr>
+        @auth
+        <td>
+            <a href="{{route('personas.create')}}"> + Nueva persona</a>
+        </td>
+        @endauth
+    </tr>
+</table>
+
+
+<h2 style="text-align:center;">Listado de personas</h2>
+
+<table class="table table-bordered" style="display:flex">
     
         <tr>
             @if($personas)
@@ -26,7 +31,7 @@
         </tr>
 
         <tr>
-            <td colspan="10" class="linke">{{$personas->links()}}</td>
+            <td colspan="10" class="linke">{{$personas->links('pagination::bootstrap-5')}}</td>
         </tr>
 
 </table>
