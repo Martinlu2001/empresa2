@@ -29,7 +29,10 @@ class CreatePersonaRequest extends FormRequest
             'nPerEdad' => 'required',
             'nPerSueldo' => 'required',
             'nPerEstado' => 'required', 
-            'cPerRnd' => 'required'
+            'cPerRnd' => 'required',
+            'image' =>[ 
+                $this->route('persona') ? 'nullable' : 'required',
+            'mimes:jpeg,png']
         ];
     }
 
@@ -41,7 +44,8 @@ class CreatePersonaRequest extends FormRequest
             'dPerFecNac.required' => 'Se necesita la fecha de nacimiento',
             'nPerEdad.required' => 'Se necesita la edad',
             'nPerSueldo.required' => 'Se necesita el sueldo',
-            'nPerEstado.required' => 'Se necesita el estado' 
+            'nPerEstado.required' => 'Se necesita el estado',
+            'image.required' => 'Debe subirse la imagen'
         ];
     }
 }

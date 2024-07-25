@@ -7,6 +7,11 @@
 <table cellpadding="3" cellspacing="5" class="table table-bordered" style="display:flex;"> 
     @auth
     <tr>
+        <td>
+            <img src="/storage/{{$persona->image}}" alt="{{$persona->cPerNombre}}" width="50" height="50">
+        </td>
+    </tr>
+    <tr>
         <th>Codigo: </th>
         <td colspan="5">{{$persona->nPerCodigo}} </td>
     </tr>
@@ -52,6 +57,7 @@
     </tr>
 
     <tr>
+        
         <td><a href="{{route('personas.edit', $persona)}}">Editar</a></td>
         <td colspan="2">
             <form action="{{route('personas.destroy', $persona)}}" method="post">

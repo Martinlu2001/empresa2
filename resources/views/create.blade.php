@@ -11,7 +11,7 @@
         <th colspan="4">Crear nueva persona</th>
     </tr>
     @include('partials.validation-errors')
-    <form action="{{route('personas.store')}}" method="post">
+    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data">
         
         <?php 
             $alea = rand();
