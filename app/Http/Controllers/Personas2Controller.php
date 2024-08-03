@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use App\Events\PersonaSaved;
 use App\Models\Persona;
 use App\Http\Requests\CreatePersonaRequest;
 //use DB;
@@ -47,7 +50,16 @@ class Personas2Controller extends Controller
         $persona = new Persona($request->validated());
         $persona->image = $request->file('image')->store('images');
         $persona->save();
-        //return redirect()->route('personas.index');
+        
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read(Storage::get($persona->image))
+            ->scale(width: 600)
+            ->encode();
+
+        Storage::put($persona->image,(string) $image);
+
+        PersonaSaved::dispatch($persona);
+
         return redirect()->route('personas.index')->with('estado', 'La persona fue creado correctamente');;
     }
 
@@ -89,6 +101,15 @@ class Personas2Controller extends Controller
             $persona->fill($request->validated());
             $persona->image = $request->file('image')->store('images');
             $persona->save();
+
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(Storage::get($persona->image))
+                ->scale(width: 600)
+                ->encode();
+
+            Storage::put($persona->image,(string) $image);
+            PersonaSaved::dispatch($persona);
+
         }else{
             $persona->update(array_filter($request->validated()));
         }
