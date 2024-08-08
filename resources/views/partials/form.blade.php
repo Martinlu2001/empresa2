@@ -8,6 +8,18 @@
     </td>
 </tr>
 <tr>
+    <th>Categoria</th>
+    <td>
+        <select name="category_id" id="category_id">
+            <option value="">Seleccione</option>
+                @foreach($categories as $id =>$name)
+                    <option value="{{$id}}" 
+                    @if($id == old('category_id', $persona->category_id)) selected @endif >{{ $name}}</option>
+                @endforach
+        </select>
+    </td>
+</tr>
+<tr>
     <th>Apellidos</th>
     <td> <input type="text" name="cPerApellido" value="{{old('cPerApellido',$persona->cPerApellido)}}"></td>           
 </tr>

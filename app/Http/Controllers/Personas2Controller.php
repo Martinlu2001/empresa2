@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use App\Events\PersonaSaved;
+use App\Models\Category;
 use App\Models\Persona;
 use App\Http\Requests\CreatePersonaRequest;
 //use DB;
@@ -25,9 +26,13 @@ class Personas2Controller extends Controller
         //
         //$personas = DB::table('personas')->get();
         //$personas = Persona::get();
-        $personas = Persona::latest()->paginate(2);
+        //$personas = Persona::latest()->paginate(2);
     
-        return view('personas', compact('personas'));
+        //return view('personas', compact('personas'));
+        return view('personas', [
+            'personas' => Persona::with('category')->latest()->paginate()
+        ]);
+
     }
 
     /**
@@ -36,7 +41,8 @@ class Personas2Controller extends Controller
     public function create()
     {
         return view('create',[
-            'persona' => new Persona
+            'persona' => new Persona,
+            'categories' => Category::pluck('name', 'id')
         ]);
     }
 
@@ -84,7 +90,8 @@ class Personas2Controller extends Controller
     {
         //
         return view('edit',[
-            'persona' => $persona
+            'persona' => $persona,
+            'categories' => Category::pluck('name', 'id')
         ]);
     }
 

@@ -5,6 +5,14 @@
 @section('content')
 
 <table class="table table-bordered" style="display:flex;">
+    @isset($category)
+        <div>
+            <h1 class="display-4 mb-0">{{$category->name}}</h1>
+            <a href="{{route('personas.index')}}">Regresar a personas</a>
+        </div>
+    @else
+        <h1 class="display-4 mb-0">Personas</h1>
+    @endisset
     <tr>
         @auth
         <td>
@@ -32,6 +40,9 @@
                     <td>
                         <a href="{{route('personas.show', $persona)}}">{{$persona->cPerApellido}}</a>
                     </td>
+                    @if($persona->category_id)
+                        <a href="#" class=" badge badge-secondary">{{ $persona->category->name}}</a>
+                    @endif
                 
                 </tr>
                 @endforeach

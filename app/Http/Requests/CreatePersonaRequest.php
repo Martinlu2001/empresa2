@@ -22,7 +22,11 @@ class CreatePersonaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cPerApellido' => 'required', 
+            'cPerApellido' => 'required',
+            'category_id'=>[
+                'required',
+                'exists:categories,id'
+            ],
             'cPerNombre' => 'required', 
             'cPerDireccion' => 'required', 
             'dPerFecNac' => 'required',
@@ -39,6 +43,7 @@ class CreatePersonaRequest extends FormRequest
     public function messages(){
         return [
             'cPerApellido.required' => 'Se necesita los apellidos', 
+            'category_id.required'=>'Seleccione una categoria',
             'cPerNombre.required' => 'Se necesita el nombre', 
             'cPerDireccion.required' => 'Se necesita la direccion', 
             'dPerFecNac.required' => 'Se necesita la fecha de nacimiento',

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('home');
 
 Route::resource('personas','App\Http\Controllers\Personas2Controller')->names('personas')->middleware('auth');
-
+Route::get('categorias/{category}', 'App\Http\Controllers\CategoryController@show')->name('categories.show');
 /*
 Route::get('personas', 'App\Http\Controllers\Personas2Controller@index')->name('personas.index');
 Route::get('personas/crear', 'App\Http\Controllers\Personas2Controller@create')->name('personas.create');
